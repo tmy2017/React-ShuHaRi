@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+.fade {
+  opacity: 0.3;
+}
+
+.item-enter {
+  animation: itemEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes itemEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.item-update {
+  animation: itemUpdate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes itemUpdate {
+  0% {
+    background: #ffe066;
+    transform: scale(1.05);
+  }
+  100% {
+    background: inherit;
+    transform: scale(1);
+  }
+}
+
+.item-exit {
+  animation: itemExit 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes itemExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateX(40px);
+  }
+}
