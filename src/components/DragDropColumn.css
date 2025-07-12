@@ -1,0 +1,96 @@
+.drag-drop-column {
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: grab;
+}
+
+.drag-drop-column:active {
+  cursor: grabbing;
+}
+
+.drag-drop-column.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+  z-index: 1000;
+}
+
+.drag-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  color: #9ca3af;
+  font-size: 10px;
+  line-height: 1;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drag-drop-column:hover .drag-handle {
+  opacity: 1;
+}
+
+.drag-handle:hover {
+  color: #4f46e5;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Drop indicators */
+.drag-over-left::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4f46e5;
+  z-index: 1000;
+  animation: dropIndicator 0.3s ease;
+}
+
+.drag-over-right::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4f46e5;
+  z-index: 1000;
+  animation: dropIndicator 0.3s ease;
+}
+
+@keyframes dropIndicator {
+  from {
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .drag-handle {
+    opacity: 1; /* Always show on mobile */
+    font-size: 12px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .drag-drop-column {
+    cursor: default; /* Remove grab cursor on mobile */
+  }
+}
