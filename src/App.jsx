@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItem, updateItem, deleteItem, setIdle, removeItem } from './store'
+import { FFAddButton, FFEditButton, FFDeleteButton, FFSaveButton, FFCancelButton } from './components/FFButton'
+import ButtonDemo from './components/ButtonDemo'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -71,6 +73,9 @@ function App() {
         </div>
         <h1 className="app-title">Simple CRUD App</h1>
       </header>
+
+      {/* Final Fantasy Button Demo */}
+      <ButtonDemo />
       <section className="card">
         <div className="input-row">
           <input
@@ -80,7 +85,7 @@ function App() {
             placeholder="Add new item"
             className="input"
           />
-          <button className="btn btn-add" onClick={handleAdd}>Add</button>
+          <FFAddButton onClick={handleAdd}>Add</FFAddButton>
         </div>
         <ul className="item-list">
           {items.map(item => (
@@ -105,14 +110,14 @@ function App() {
                     onChange={e => setEditValue(e.target.value)}
                     className="input"
                   />
-                  <button className="btn btn-save" onClick={handleUpdate}>Save</button>
-                  <button className="btn btn-cancel" onClick={() => setEditId(null)}>Cancel</button>
+                  <FFSaveButton onClick={handleUpdate}>Save</FFSaveButton>
+                  <FFCancelButton onClick={() => setEditId(null)}>Cancel</FFCancelButton>
                 </div>
               ) : (
                 <div className="item-row">
                   <span className="item-text">{item.text}</span>
-                  <button className="btn btn-edit" onClick={() => handleEdit(item.id, item.text)}>Edit</button>
-                  <button className="btn btn-delete" onClick={() => handleDelete(item.id)}>Delete</button>
+                  <FFEditButton onClick={() => handleEdit(item.id, item.text)}>Edit</FFEditButton>
+                  <FFDeleteButton onClick={() => handleDelete(item.id)}>Delete</FFDeleteButton>
                 </div>
               )}
             </li>
