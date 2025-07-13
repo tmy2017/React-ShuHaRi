@@ -1,15 +1,37 @@
 import React from 'react';
 import FFButton, { FFAddButton, FFEditButton, FFDeleteButton, FFSaveButton, FFCancelButton } from './FFButton';
 import { useSound } from '../hooks/useSound';
+import audioManager from '../utils/audioManager';
 
 /**
  * Demo component to showcase Final Fantasy-style button animations and sounds
  */
 const ButtonDemo = () => {
-  const { volume, setVolume, isMuted, toggleMute } = useSound();
+  const { volume, setVolume, isMuted, toggleMute, playSound } = useSound();
 
   const handleDemoClick = (buttonType) => {
     console.log(`${buttonType} button clicked!`);
+  };
+
+  const testSound = async (soundName) => {
+    console.log(`Testing sound: ${soundName}`);
+    try {
+      await playSound(soundName);
+      console.log(`Sound ${soundName} played successfully`);
+    } catch (error) {
+      console.error(`Failed to play sound ${soundName}:`, error);
+    }
+  };
+
+  const initializeAudio = async () => {
+    console.log('Manually initializing audio system...');
+    try {
+      await audioManager.initializeAudioContext();
+      await audioManager.preloadSounds();
+      console.log('Audio system initialized successfully');
+    } catch (error) {
+      console.error('Failed to initialize audio system:', error);
+    }
   };
 
   return (
@@ -24,11 +46,11 @@ const ButtonDemo = () => {
       </h3>
       
       {/* Audio Controls */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        gap: '10px', 
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
         marginBottom: '20px',
         color: '#fff'
       }}>
@@ -56,6 +78,46 @@ const ButtonDemo = () => {
         >
           {isMuted ? '🔇' : '🔊'}
         </button>
+        <button
+          onClick={initializeAudio}
+          style={{
+            background: '#10b981',
+            border: 'none',
+            color: '#fff',
+            padding: '5px 10px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          🎵 Init Audio
+        </button>
+      </div>
+
+      {/* Sound Test Buttons */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '10px',
+        marginBottom: '20px',
+        flexWrap: 'wrap'
+      }}>
+        {['hover', 'click', 'success', 'error', 'magic'].map(soundName => (
+          <button
+            key={soundName}
+            onClick={() => testSound(soundName)}
+            style={{
+              background: '#4f46e5',
+              border: 'none',
+              color: '#fff',
+              padding: '5px 10px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            Test {soundName}
+          </button>
+        ))}
       </div>
 
       {/* Button Showcase */}
