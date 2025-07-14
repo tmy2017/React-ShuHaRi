@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { FIELD_TYPES } from '../store';
 
 // Text Field Component
@@ -138,6 +140,56 @@ export const CheckboxField = ({ value, onChange, onSave, onCancel, isEditing }) 
   );
 };
 
+// Markdown Field Component
+export const MarkdownField = ({ value, onChange, onSave, onCancel, isEditing }) => {
+  if (isEditing) {
+    return (
+      <textarea
+        data-testid="markdown-textarea"
+        value={value || ''}
+        onChange={(e) => onChange(e.target.value)}
+        onBlur={onSave}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && e.ctrlKey) {
+            e.preventDefault();
+            onSave();
+          }
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            onCancel();
+          }
+        }}
+        className="field-input markdown-textarea"
+        autoFocus
+        rows={6}
+        placeholder="Enter markdown text..."
+      />
+    );
+  }
+
+  return (
+    <div className="field-display markdown-field" data-testid="markdown-display">
+      {value ? (
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            // Customize link behavior for security
+            a: ({ href, children, ...props }) => (
+              <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                {children}
+              </a>
+            )
+          }}
+        >
+          {value}
+        </ReactMarkdown>
+      ) : (
+        <span className="markdown-placeholder">Click to add markdown content...</span>
+      )}
+    </div>
+  );
+};
+
 // Field Type Selector Component
 export const FieldTypeSelector = ({ value, onChange, disabled = false }) => {
   return (
@@ -152,6 +204,7 @@ export const FieldTypeSelector = ({ value, onChange, disabled = false }) => {
       <option value={FIELD_TYPES.DATE}>Date</option>
       <option value={FIELD_TYPES.SELECT}>Select</option>
       <option value={FIELD_TYPES.CHECKBOX}>Checkbox</option>
+      <option value={FIELD_TYPES.MARKDOWN}>Markdown</option>
     </select>
   );
 };
@@ -234,6 +287,8 @@ export const FieldRenderer = ({ field, value, onChange, onSave, onCancel, isEdit
       return <SelectField {...commonProps} options={field.options} />;
     case FIELD_TYPES.CHECKBOX:
       return <CheckboxField {...commonProps} />;
+    case FIELD_TYPES.MARKDOWN:
+      return <MarkdownField {...commonProps} />;
     default:
       return <TextField {...commonProps} />;
   }

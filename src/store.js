@@ -6,7 +6,8 @@ export const FIELD_TYPES = {
   NUMBER: 'number',
   DATE: 'date',
   SELECT: 'select',
-  CHECKBOX: 'checkbox'
+  CHECKBOX: 'checkbox',
+  MARKDOWN: 'markdown'
 };
 
 // Default table structure
@@ -357,7 +358,7 @@ const tablesSlice = createSlice({
 });
 
 // Helper function to get default values for field types
-function getDefaultValueForFieldType(fieldType) {
+export function getDefaultValueForFieldType(fieldType) {
   switch (fieldType) {
     case FIELD_TYPES.TEXT:
       return '';
@@ -369,6 +370,8 @@ function getDefaultValueForFieldType(fieldType) {
       return '';
     case FIELD_TYPES.CHECKBOX:
       return false;
+    case FIELD_TYPES.MARKDOWN:
+      return '';
     default:
       return '';
   }

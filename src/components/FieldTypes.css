@@ -114,6 +114,123 @@
   font-weight: bold;
 }
 
+/* Markdown Field */
+.markdown-field {
+  font-family: inherit;
+  line-height: 1.6;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.markdown-field h1,
+.markdown-field h2,
+.markdown-field h3,
+.markdown-field h4,
+.markdown-field h5,
+.markdown-field h6 {
+  margin: 0.5em 0 0.3em 0;
+  font-weight: 600;
+}
+
+.markdown-field h1 { font-size: 1.5em; }
+.markdown-field h2 { font-size: 1.3em; }
+.markdown-field h3 { font-size: 1.1em; }
+.markdown-field h4 { font-size: 1em; }
+.markdown-field h5 { font-size: 0.9em; }
+.markdown-field h6 { font-size: 0.8em; }
+
+.markdown-field p {
+  margin: 0.5em 0;
+}
+
+.markdown-field ul,
+.markdown-field ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.markdown-field li {
+  margin: 0.2em 0;
+}
+
+.markdown-field blockquote {
+  margin: 0.5em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-style: italic;
+}
+
+.markdown-field code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.85em;
+}
+
+.markdown-field pre {
+  background-color: #f3f4f6;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+
+.markdown-field pre code {
+  background: none;
+  padding: 0;
+}
+
+.markdown-field a {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.markdown-field a:hover {
+  text-decoration: underline;
+}
+
+.markdown-field strong {
+  font-weight: 600;
+}
+
+.markdown-field em {
+  font-style: italic;
+}
+
+.markdown-field table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.markdown-field th,
+.markdown-field td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.markdown-field th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.markdown-placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Markdown Textarea */
+.markdown-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 .checkbox-custom:hover {
   border-color: #4f46e5;
 }
