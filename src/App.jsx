@@ -1,53 +1,21 @@
-import { useState } from 'react'
-import AirtableView from './components/AirtableView'
-import LegacyView from './components/LegacyView'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [showLegacyView, setShowLegacyView] = useState(false);
-
+const App = () => {
   return (
-    <main className="app-container">
-      <header className="app-header">
-        <div className="logo-group">
-          <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1 className="app-title">Airtable-like Database</h1>
-        <div className="view-toggle">
-          <button
-            className={`toggle-btn ${!showLegacyView ? 'active' : ''}`}
-            onClick={() => setShowLegacyView(false)}
-          >
-            Table View
-          </button>
-          <button
-            className={`toggle-btn ${showLegacyView ? 'active' : ''}`}
-            onClick={() => setShowLegacyView(true)}
-          >
-            Legacy View
-          </button>
-        </div>
-      </header>
-
-      {showLegacyView ? (
-        <LegacyView />
-      ) : (
-        <AirtableView />
-      )}
-
-      <footer>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
-      </footer>
-    </main>
+    <section className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-4xl font-bold text-blue-600 mb-4">
+        Hello World
+      </h1>
+      <p className="text-lg text-gray-700 mb-6">
+        Tailwind CSS is working correctly!
+      </p>
+      <div className="flex gap-4">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+          Primary Button
+        </button>
+        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors">
+          Success Button
+        </button>
+      </div>
+    </section>
   )
 }
 
